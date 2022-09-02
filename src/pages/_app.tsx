@@ -1,9 +1,20 @@
-import '../styles/globals.css'
+import 'nprogress/nprogress.css'
 
 import type { AppProps } from 'next/app'
+import nprogress from 'nprogress'
+import { useEffect } from 'react'
 
-// eslint-disable-next-line func-style
-function MyApp({ Component, pageProps }: AppProps) {
+nprogress.configure({ showSpinner: false, speed: 400, minimum: 0.25 })
+
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  if (typeof window !== 'undefined') {
+    nprogress.start()
+  }
+
+  useEffect(() => {
+    nprogress.done()
+  })
+
   return <Component {...pageProps} />
 }
 
